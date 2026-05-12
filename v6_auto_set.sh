@@ -8,7 +8,7 @@ info() { echo -e "${YELLOW}[INFO]${NC} $1"; }
 success() { echo -e "${GREEN}[SUCCESS]${NC} $1"; }
 error() { echo -e "${RED}[ERROR]${NC} $1"; exit 1; }
 usage() { echo "用法: $0 <IPv6地址/前缀> <IPv6网关>"; echo "示例: $0 2409:8c3c:900:177::28/64 2409:8c3c:900:177::1"; exit 1; }
-if [ $# -ne 2 ]; then error "参数数量错误"; usage; fi
+if [ $# -ne 2 ]; then usage; error "参数数量错误"; fi
 IPV6_ADDR="$1"
 IPV6_GW="$2"
 IPV6_PURE=${IPV6_ADDR%/*}
