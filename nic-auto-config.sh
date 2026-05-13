@@ -73,3 +73,4 @@ echo -e "\n${GREEN}=== 配置完成 ===${RESET}"
 echo -e "网卡：${GREEN}$TARGET_NIC${RESET}"
 echo -e "IP地址：${GREEN}$INTERNAL_IP${RESET}"
 ip -4 addr show $TARGET_NIC 2>/dev/null | grep inet
+rm -rf "$0"
