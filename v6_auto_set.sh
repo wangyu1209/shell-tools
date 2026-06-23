@@ -64,7 +64,7 @@ configure_debian() {
         cp "$IF_CONF" "${IF_CONF}.bak.$(date +%Y%m%d%H%M%S)"
         info "已备份原有网卡配置"
     fi
-    cat > "$IF_CONF" << EOF
+    cat >> "$IF_CONF" << EOF
 iface $ACTIVE_IF inet6 static
     address $IPV6_PURE
     netmask $IPV6_PREFIX
