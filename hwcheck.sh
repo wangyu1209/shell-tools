@@ -158,7 +158,8 @@ for dev in $(lsblk -d -n -o NAME 2>/dev/null | grep -v 'loop\|rom\|sr\|zram'); d
     rota=$(cat "/sys/block/${dev}/queue/rotational" 2>/dev/null)
     tran=$(lsblk -dn -o TRAN "/dev/${dev}" 2>/dev/null)
 
-    dsn=$(lsblk -dn -o SERIAL "/dev/${dev}" 2>/dev/null)
+    dsn=$(smartctl -i "/dev/${dev}" 2>/dev/null | grep -i -w "Serial Number:" | awk -F: '{gsub(/^[ \t]+/, "", $2); print $2}')
+    [ -z "$dsn" ] && dsn=$(lsblk -dn -o SERIAL "/dev/${dev}" 2>/dev/null)
     [ -z "$dsn" ] && dsn=$(cat "/sys/block/${dev}/device/serial" 2>/dev/null)
     [ -z "$dsn" ] && dsn="-"
 
